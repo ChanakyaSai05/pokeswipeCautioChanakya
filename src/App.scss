@@ -1,0 +1,475 @@
+@import url("https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap");
+[data-theme="light"] {
+  --bg-color: #ffffff;
+  --text-color: #333333;
+  --heading-color: #444444;
+  --card-bg-color: rgb(238, 237, 237);
+  --card-button-color: #69db7c;
+  --card-button-border: var(--text-color);
+  --background: #e0f7fa;
+  --dislike-color: #ff6347;
+  --heart-color: var(--bg-color);
+  --card-ability-first:#FFD43B;
+}
+[data-theme="dark"] {
+  --bg-color: #333333;
+  --text-color: #ffffff;
+  --heading-color: #ffffff;
+  --card-bg-color: #111111;
+  --card-button-color: darkgreen;
+  --card-button-border: var(--text-color);
+  --background: #006064;
+  --dislike-color: darkred;
+  --heart-color: var(--bg-color);
+  --card-ability-first:#5E3900;
+}
+:root {
+  background-color: var(--background);
+  color: var(--text-color);
+}
+
+* {
+  &,
+  &::before,
+  &::after {
+    box-sizing: border-box;
+  }
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: "Kalam", cursive;
+  font-style: normal;
+}
+.icon {
+  stroke: unset;
+  stroke-width: 0px;
+  fill: currentColor;
+  display: inline-block;
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.15em;
+}
+
+// * {
+//   background-color: var(--bg-color);
+//   color: var(--text-color);
+// }
+.navbar {
+  display: flex;
+  justify-content: space-between;
+}
+.node-switch label {
+  display: inline-block;
+  width: 40px;
+  height: 20px;
+  position: relative;
+  margin-left: 10px;
+}
+.node-switch .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 20px;
+}
+.node-switch input:checked + .slider {
+  background-color: #2196f3;
+}
+.node-switch .slider:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  top: 1.2px;
+  background-color: white;
+  -webkit-transition: 0.4s;
+  transition: 0.4s;
+  border-radius: 50%;
+}
+.node-switch input:checked + .slider:before {
+  -webkit-transform: translateX(20px);
+  -ms-transform: translateX(20px);
+  transform: translateX(20px);
+}
+//
+
+.l {
+  box-shadow: inset 0 0 0 1px red;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  padding: 0;
+  margin: 0;
+}
+
+.fs-22 {
+  font-size: 1.375rem !important;
+}
+
+.fs-28 {
+  font-size: 1.75rem !important;
+}
+
+.w-20 {
+  width: 20%;
+}
+
+.w-25 {
+  width: 25%;
+}
+
+.w-30 {
+  width: 30%;
+}
+
+.w-40 {
+  width: 40%;
+}
+
+.w-45 {
+  width: 45%;
+}
+
+.w-50 {
+  width: 50%;
+}
+
+.w-100 {
+  width: 100%;
+}
+
+.max-w240 {
+  max-width: 240px;
+}
+
+.mb-10 {
+  margin-bottom: 10px;
+}
+
+.mb-20 {
+  margin-bottom: 20px;
+}
+
+.mb-30 {
+  margin-bottom: 30px;
+}
+
+.ml-10 {
+  margin-left: 10px;
+}
+
+.ml-15 {
+  margin-left: 15px;
+}
+
+.ml-20 {
+  margin-left: 20px;
+}
+
+.mr-10 {
+  margin-right: 10px;
+}
+
+.mr-15 {
+  margin-right: 15px;
+}
+
+.mr-20 {
+  margin-right: 20px;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.my-20 {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.my-30 {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.mt-80 {
+  margin-top: 80px;
+}
+
+.pt-10 {
+  padding-top: 10px;
+}
+
+.py-20 {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.mr-10 {
+  margin-right: 10px;
+}
+
+.d-flex {
+  display: flex;
+}
+
+.ai-center {
+  align-items: center;
+}
+
+.jc-center {
+  justify-content: center;
+}
+
+.jc-between {
+  justify-content: space-between;
+}
+
+.jc-end {
+  justify-content: end;
+}
+h6,
+p,
+button {
+  color: var(--text-color);
+}
+
+.container {
+  width: 100%;
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 0 10px 20px 10px;
+  .logo-wrapper {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0;
+  }
+}
+
+.card-wrapper {
+  position: relative;
+  .play-card {
+    .heart-btn {
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: #f783ac;
+      border: none;
+      outline: none;
+      cursor: pointer;
+      font-size: 22px;
+      color: var(--heart-color);
+    }
+    width: 100%;
+    min-height: 400px;
+    height: auto;
+    background: var(--card-bg-color);
+    border-radius: 15px;
+    border: 2px solid var(--card-button-border);
+    padding: 20px;
+    h6 {
+      font-size: 28px;
+      margin: 20px 0;
+    }
+    p {
+      font-size: 22px;
+      margin-bottom: 10px;
+    }
+    .card-image {
+      position: relative;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      .card-image-svg {
+        width: 160px;
+        height: 160px;
+        min-height: 160px;
+        max-height: 160px;
+        img {
+          width: 100%;
+          height:160px;
+        }
+      }
+      button {
+        position: absolute;
+        right: 0;
+        top: 0;
+      }
+    }
+    .card-title {
+      text-align: center;
+      text-transform: uppercase;
+      margin-top: 20px;
+    }
+    .card-abilities {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+      div {
+        border: 2px solid var(--card-button-border);
+        padding: 2px 12px;
+        border-radius: 8px;
+        background-color: var(--card-ability-first);
+        text-transform: uppercase;
+      }
+    }
+    .go-btn {
+      width: 100%;
+      border: 2px solid var(--card-button-border);
+      cursor: pointer;
+      border-radius: 8px;
+      padding: 12px;
+      background: var(--card-button-color);
+      font-family: "Kalam", cursive;
+      transition: background 0.3s, box-shadow 0.3s, transform 0.1s;
+      font-size: 22px;
+      &:active {
+        background: var(--card-button-color);
+        box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
+        transform: scale(0.98);
+      }
+    }
+    .like-buttons {
+      display: flex;
+      justify-content: space-between;
+      button {
+        border: 2px solid var(--card-button-border);
+        cursor: pointer;
+        border-radius: 8px;
+        width: 35%;
+        padding: 10px;
+        font-family: "Kalam", cursive;
+        transition: background 0.3s, box-shadow 0.3s, transform 0.1s;
+        font-size: 22px;
+      }
+      .like-btn {
+        background: var(--card-button-color);
+        &:active {
+          background: var(--card-button-color);
+          box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
+          transform: scale(0.98);
+        }
+      }
+      .dislike-btn {
+        background: var(--dislike-color);
+        &:active {
+          background: var(--dislike-color);
+          box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.3);
+          transform: scale(0.98);
+        }
+      }
+    }
+  }
+  .cardOne {
+    position: absolute;
+    left: 0;
+    top: 0;
+  }
+  .cardTwo {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -2;
+    margin-top: 10px;
+  }
+  .cardThree {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: -3;
+    margin-top: 20px;
+  }
+}
+
+.second-card {
+  position: relative;
+  margin: 20px;
+}
+
+.third-card {
+  position: relative;
+  margin: 30px;
+}
+.text-center {
+  text-align: center;
+}
+
+.add-back {
+  position: relative;
+  .back-btn {
+    position: absolute !important;
+    left: 2%;
+    top: 45%;
+    padding: 0;
+    margin: 0;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 35px;
+    cursor: pointer;
+    &:hover {
+      color: #feca1b;
+    }
+  }
+}
+
+.liketext {
+  font-size: 32px;
+  svg{
+    color: red;
+  }
+}
+
+.like-content {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 30px;
+  .like-card {
+    width: calc(50% - 16px);
+    background: var(--card-bg-color);
+    border-radius: 15px;
+    border: 1px solid black;
+    padding: 20px;
+    .img-box {
+      height: 120px;
+      width: 120px;
+      min-height: 120px;
+      img {
+        width: 100%;
+        height: 120px;
+      }
+    }
+    text-transform: uppercase;
+  }
+}
+.next-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: none;
+  border: none;
+  outline: none;
+  padding: 0;
+  margin: 0;
+  font-size: 45px;
+  color: #feca1b;
+  cursor: pointer;
+}
