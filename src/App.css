@@ -213,9 +213,13 @@ button {
 }
 .navbar .navbar-logo {
   cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 45px;
 }
 .navbar .navbar-logo img {
-  height: 40px;
+  height: 30px;
 }
 .navbar .navbar-title {
   font-size: 24px;
@@ -290,6 +294,12 @@ button {
 .container .logo-wrapper {
   display: flex;
   justify-content: center;
+  margin: 20px 0;
+}
+.container .loader {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin: 20px 0;
 }
 

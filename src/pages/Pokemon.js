@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import UserContext from "../context/UserContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { ColorRing } from "react-loader-spinner";
 
 function Pokemon() {
   // Accessing context values
@@ -175,11 +176,6 @@ function Pokemon() {
     }
   }, []);
 
-  // console.log(cards, "cards");
-  // console.log(currentIndex, "currentIndex");
-  // console.log(selectedCards, "selected cards");
-  // console.log(nextUrl, "next url");
-
   return (
     <>
       {/* Main container for the Pokemon component */}
@@ -192,7 +188,20 @@ function Pokemon() {
             alt="pokeapi"
           />
         </div>
-
+        {/* loader will display when api is loading */}
+        {loading && (
+          <div className="loader">
+            <ColorRing
+              visible={true}
+              height="80"
+              width="80"
+              ariaLabel="color-ring-loading"
+              wrapperStyle={{}}
+              wrapperClass="color-ring-wrapper"
+              colors={["#feca1b", "#feca1b", "#feca1b", "#feca1b", "#feca1b"]}
+            />
+          </div>
+        )}
         {/* Displaying the cards */}
         {cards
           ?.slice(currentIndex, currentIndex + 3)
