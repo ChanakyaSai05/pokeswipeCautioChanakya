@@ -4,15 +4,24 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function Pokemon() {
+  // Accessing context values
   const context = useContext(UserContext);
-  const { cards, setcards, selectedCards, setselectedCards } = context;
-  const navigate = useNavigate();
+  const {
+    cards,
+    setcards,
+    selectedCards,
+    setselectedCards,
+    currentIndex,
+    setCurrentIndex,
+    nextUrl,
+    setnextUrl,
+  } = context;
+  const navigate = useNavigate(); // Initializing navigate function for navigation
 
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [nextUrl, setnextUrl] = useState(null);
   const [loading, setloading] = useState(false);
   const [loadingAbilities, setloadingAbilities] = useState(false);
 
+  // Function to fetch card data from the API
   const getCardsData = async (url) => {
     setloading(true);
     try {
@@ -58,6 +67,8 @@ function Pokemon() {
       console.log(error);
     }
   };
+
+  // Function to fetch abilities of a specific card
   const getAbilities = async (data, index = 0, from = "normal") => {
     try {
       let response = await axios({
@@ -89,6 +100,8 @@ function Pokemon() {
       return [];
     }
   };
+
+  // Function to get CSS class for card based on index
   const getCardClass = (card_index) => {
     if (card_index === 0) {
       return "cardOne";
@@ -100,6 +113,8 @@ function Pokemon() {
       return "cardOne";
     }
   };
+
+  // Function to get CSS class for card container based on index
   const getCardClassContainer = (card_index) => {
     if (card_index === 0) {
       return "";
@@ -111,13 +126,22 @@ function Pokemon() {
       return "";
     }
   };
+
+  // Function to get the image index for the card image URL
   const getImageIndex = (card) => {
     let url = card?.url?.split("/");
     let image_index = url[url.length - 2];
     return image_index;
   };
+
+  // Function to handle actions for liking or disliking a card
   const handleAction = async (from) => {
     setloadingAbilities(true);
+    if (currentIndex === cards?.length - 3) {
+      if (nextUrl) {
+        getCardsData(nextUrl);
+      }
+    }
     if (currentIndex < cards?.length - 1) {
       let index = currentIndex + 1;
       let data = { ...cards[currentIndex + 1] };
@@ -125,27 +149,42 @@ function Pokemon() {
       if (from === "like-button") {
         setselectedCards((prev) => [...prev, { ...cards[currentIndex] }]);
       }
-
-      setCurrentIndex(currentIndex + 1);
-    }
-    if (currentIndex === cards?.length - 3) {
-      if (nextUrl) {
-        getCardsData(nextUrl);
+      let cardOne = document.querySelector(".cardOne");
+      let heartBtn = document.querySelector(".heart-btn");
+      if (cardOne) {
+        cardOne.style.transform = "translateY(-50px)";
+        if (from === "like-button") {
+          heartBtn.style.color = "red";
+          heartBtn.classList.add("pulse");
+        }
       }
+      setTimeout(() => {
+        cardOne.style.transform = "";
+        heartBtn.style.color = "";
+        heartBtn.classList.remove("pulse");
+        setCurrentIndex(currentIndex + 1);
+      }, 250);
     }
     setloadingAbilities(false);
   };
+
+  // useEffect hook to fetch initial pokemon card data when the component mounts
   useEffect(() => {
-    getCardsData(`https://pokeapi.co/api/v2/pokemon`);
+    if (!nextUrl) {
+      getCardsData(`https://pokeapi.co/api/v2/pokemon`);
+    }
   }, []);
 
-  console.log(cards, "cards");
-  console.log(currentIndex, "currentIndex");
-  console.log(selectedCards, "selected cards");
+  // console.log(cards, "cards");
+  // console.log(currentIndex, "currentIndex");
+  // console.log(selectedCards, "selected cards");
+  // console.log(nextUrl, "next url");
 
   return (
     <>
+      {/* Main container for the Pokemon component */}
       <div className="container">
+        {/* Logo section */}
         <div className="logo-wrapper">
           <img
             src="images/logo.png"
@@ -154,6 +193,7 @@ function Pokemon() {
           />
         </div>
 
+        {/* Displaying the cards */}
         {cards
           ?.slice(currentIndex, currentIndex + 3)
           ?.map((card, card_index) => (
@@ -186,16 +226,29 @@ function Pokemon() {
                   </div>
                   {card?.abilities?.length > 0 ? (
                     <div className="card-abilities">
-                      {card?.abilities?.map((ability) => (
-                        <div>{ability?.ability?.name}</div>
-                      ))}
+                      {card?.abilities?.map((ability, index) => {
+                        const halfIndex = Math.ceil(card.abilities.length / 2);
+                        const abilityClass =
+                          index < halfIndex ? "first-half" : "second-half";
+                        return (
+                          <div
+                            key={ability?.ability?.name}
+                            className={abilityClass}
+                          >
+                            {ability?.ability?.name}
+                          </div>
+                        );
+                      })}
                     </div>
                   ) : (
                     <div className="card-abilities">
-                      <div className="mb-20">&nbsp;</div>
+                      <div className="mb-20">
+                        <br />
+                      </div>
                     </div>
                   )}
 
+                  {/* Like and Dislike buttons */}
                   <div className="like-buttons">
                     <button
                       type="button"
@@ -221,16 +274,22 @@ function Pokemon() {
             </div>
           ))}
       </div>
-      <button
-        className="next-btn"
-        onClick={() => {
-          navigate("/selected-pokemon");
-        }}
-      >
-        <svg className="icon">
-          <use href="#icon_next"></use>
-        </svg>
-      </button>
+      {/* Display the number of liked pokemon cards and a button to navigate to the liked pokemon cards page */}
+      {selectedCards?.length > 0 && (
+        <div className="like-count">Your Likes : {selectedCards?.length}</div>
+      )}
+      {selectedCards?.length > 0 && (
+        <button
+          className="next-btn"
+          onClick={() => {
+            navigate("/liked-pokemon");
+          }}
+        >
+          <svg className="icon">
+            <use href="#icon_next"></use>
+          </svg>
+        </button>
+      )}
     </>
   );
 }
