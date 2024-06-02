@@ -21,7 +21,6 @@ function Header() {
       <div className="navbar-title-container">
         <div className="navbar-title">PokéSwipe</div> {/* Title of the app */}
       </div>
-      <div className="theme-container">
         {/* Theme switcher */}
         <div className="theme-switch">
           {theme === "dark" ? (
@@ -42,7 +41,6 @@ function Header() {
             />
             <span className="slider round"></span>
           </label>
-        </div>
       </div>
     </nav>
   );
