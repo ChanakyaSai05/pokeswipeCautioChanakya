@@ -213,28 +213,25 @@ button {
 }
 .navbar .navbar-logo {
   cursor: pointer;
-  width: 95px;
 }
 .navbar .navbar-logo img {
   height: 40px;
 }
-.navbar .navbar-title {
+.navbar .navbar-title-container {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  text-align: center;
+}
+.navbar .navbar-title-container .navbar-title {
   font-size: 24px;
   font-weight: bold;
-}
-.navbar .navbar-links a {
-  margin: 0 10px;
-  text-decoration: none;
-  color: inherit;
-}
-.navbar .navbar-links a:hover {
-  text-decoration: underline;
 }
 .navbar .theme-switch {
   display: flex;
   justify-content: end;
   align-items: center;
-  width: 95px;
 }
 .navbar .theme-switch .icon {
   font-size: large;

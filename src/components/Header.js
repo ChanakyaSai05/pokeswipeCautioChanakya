@@ -18,27 +18,31 @@ function Header() {
         <img src="images/logo.png" alt="PokeAPI Logo" />
         {/* Logo image */}
       </div>
-      <div className="navbar-title">PokéSwipe</div> {/* Title of the app */}
-      {/* Theme switcher */}
-      <div className="theme-switch">
-        {theme === "dark" ? (
-          <svg className="icon moon">
-            <use href="#icon_moon"></use>
-          </svg>
-        ) : (
-          <svg className="icon sun">
-            <use href="#icon_sun"></use>
-          </svg>
-        )}
-        <label>
-          {/* Checkbox to toggle theme */}
-          <input
-            type="checkbox"
-            onChange={toggleTheme}
-            checked={theme === "dark"}
-          />
-          <span className="slider round"></span>
-        </label>
+      <div className="navbar-title-container">
+        <div className="navbar-title">PokéSwipe</div> {/* Title of the app */}
+      </div>
+      <div className="theme-container">
+        {/* Theme switcher */}
+        <div className="theme-switch">
+          {theme === "dark" ? (
+            <svg className="icon moon">
+              <use href="#icon_moon"></use>
+            </svg>
+          ) : (
+            <svg className="icon sun">
+              <use href="#icon_sun"></use>
+            </svg>
+          )}
+          <label>
+            {/* Checkbox to toggle theme */}
+            <input
+              type="checkbox"
+              onChange={toggleTheme}
+              checked={theme === "dark"}
+            />
+            <span className="slider round"></span>
+          </label>
+        </div>
       </div>
     </nav>
   );
