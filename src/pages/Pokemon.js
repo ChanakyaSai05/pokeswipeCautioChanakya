@@ -251,7 +251,12 @@ function Pokemon() {
                     </div>
                   ) : (
                     <div className="card-abilities">
-                      <div className="mb-20">
+                      <div
+                        className="mb-20"
+                        style={{
+                          border: "none",
+                        }}
+                      >
                         <br />
                       </div>
                     </div>

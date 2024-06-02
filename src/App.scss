@@ -214,13 +214,10 @@ button {
 
   .navbar-logo {
     cursor: pointer;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    width: 95px;
     img {
-      height: 30px;
+      height: 40px;
     }
-    height: 45px;
   }
 
   .navbar-title {
@@ -239,10 +236,12 @@ button {
       }
     }
   }
-// toggle switch css
+  // toggle switch css
   .theme-switch {
     display: flex;
+    justify-content: end;
     align-items: center;
+    width: 95px;
     .icon {
       font-size: large;
       margin-right: 4px;
@@ -309,7 +308,7 @@ button {
     justify-content: center;
     margin: 20px 0;
   }
-  .loader{
+  .loader {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -539,6 +538,7 @@ button {
 }
 .like-content {
   display: flex;
+  justify-content: space-between;
   flex-wrap: wrap;
   gap: 30px;
   .like-card {

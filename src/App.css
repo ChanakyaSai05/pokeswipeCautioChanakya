@@ -213,13 +213,10 @@ button {
 }
 .navbar .navbar-logo {
   cursor: pointer;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 45px;
+  width: 95px;
 }
 .navbar .navbar-logo img {
-  height: 30px;
+  height: 40px;
 }
 .navbar .navbar-title {
   font-size: 24px;
@@ -235,7 +232,9 @@ button {
 }
 .navbar .theme-switch {
   display: flex;
+  justify-content: end;
   align-items: center;
+  width: 95px;
 }
 .navbar .theme-switch .icon {
   font-size: large;
@@ -526,6 +525,7 @@ button {
 
 .like-content {
   display: flex;
+  justify-content: space-between;
   flex-wrap: wrap;
   gap: 30px;
 }
